@@ -21,9 +21,9 @@ const CourseSequenceContainer = ({ sequence }: Props) => {
           >
             <PlayCircleOutlineIcon className="text-[#7E3AF2]" />
             <div className="space-y-2 w-full">
-              <p className="">{sequenceData.title}</p>
+              <p className="">{sequenceData?.title}</p>
               {selectedSequenceIndex === index && (
-                <p className="text-sm text-gray-400">{sequenceData.desc}</p>
+                <p className="text-sm text-gray-400">{sequenceData?.desc}</p>
               )}
             </div>
             <ExpandMoreIcon

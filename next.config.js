@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode:
     process.env.NEXT_PUBLIC_NODE_ENV === "production" ? true : false,
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -92,6 +93,16 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "thumbs.dreamstime.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "europe1.discourse-cdn.com",
         port: "",
       },
     ],

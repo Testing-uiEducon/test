@@ -22,7 +22,7 @@ const authHeader = async (requestParams: any, forceRefresh?: boolean) => {
 
   // For getting access token on the client side
   if (typeof window !== "undefined" && firebaseAuth.currentUser) {
-    console.log(firebaseAuth.currentUser.uid);
+    // console.log(firebaseAuth.currentUser.uid);
 
     accessToken = await firebaseAuth.currentUser.getIdToken(forceRefresh);
   } else {
@@ -105,4 +105,27 @@ const handlePost = async (
   }
 };
 
-export { handleGet, handlePost, getUid };
+const handleBlobReq = async (
+  url: string,
+  params?: any,
+  forceRefreshAuthToken?: any
+) => {
+  try {
+    const resp = await axiosInstance({
+      method: "get",
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: await authHeader(params, forceRefreshAuthToken),
+      },
+      params: params || {},
+      responseType: "blob",
+    });
+
+    return resp;
+  } catch (err: any) {
+    return Promise.reject(err.message ? err.message : "");
+  }
+};
+
+export { handleGet, handlePost, getUid, handleBlobReq };
