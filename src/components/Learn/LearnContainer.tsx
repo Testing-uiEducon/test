@@ -7,6 +7,7 @@ import { LearnState } from "@/context/LearnContextProvider";
 import { useAppSelector } from "@/core/redux/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { handleGet, handlePost } from "@/core/api-calls/Axios";
+import CourseCompletion from "./CourseCompletion";
 
 type Props = {};
 
@@ -24,113 +25,113 @@ interface courseDataType {
   createdAt: any;
 }
 
-const seedData: Array<ResourceType> = [
-  {
-    type: "video",
-    title: "Get Started with AI",
-    desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    videoURL: "https://vimeo.com/784547775",
-    id: "0",
-  },
-  {
-    type: "video",
-    title: "Example Title 1",
-    desc: "Example Desc 1",
-    videoURL: "https://vimeo.com/784547786",
-    id: "1",
-  },
-  {
-    type: "video",
-    title: "Example Title 2",
-    desc: "Example Desc 2",
-    videoURL: "https://vimeo.com/784547772",
-    id: "2",
-  },
-  {
-    type: "video",
-    title: "Example Title 3",
-    desc: "Example Desc 3",
-    videoURL: "https://vimeo.com/784547687",
-    id: "3",
-  },
-  {
-    type: "video",
-    title: "Example Title 4",
-    desc: "Example Desc 4",
-    videoURL: "https://vimeo.com/784546783",
-    id: "4",
-  },
-  {
-    type: "video",
-    title: "Example Title 5",
-    desc: "Example Desc 5",
-    videoURL: "https://vimeo.com/784547764",
-    id: "5",
-  },
-  {
-    type: "video",
-    title: "Example Title 6",
-    desc: "Example Desc 6",
-    videoURL: "https://vimeo.com/784547736",
-    id: "6",
-  },
-  {
-    type: "video",
-    title: "Example Title 7",
-    desc: "Example Desc 7",
-    videoURL: "https://vimeo.com/784547745",
-    id: "7",
-  },
-  {
-    type: "video",
-    title: "Example Title 8",
-    desc: "Example Desc 8",
-    videoURL: "https://vimeo.com/784547740",
-    id: "8",
-  },
-  {
-    type: "video",
-    title: "Example Title 9",
-    desc: "Example Desc 9",
-    videoURL: "https://vimeo.com/784547711",
-    id: "9",
-  },
-  {
-    type: "video",
-    title: "Example Title 10",
-    desc: "Example Desc 10",
-    videoURL: "https://vimeo.com/784547695",
-    id: "10",
-  },
-  {
-    type: "video",
-    title: "Example Title 11",
-    desc: "Example Desc 11",
-    videoURL: "https://vimeo.com/784547673",
-    id: "11",
-  },
-  {
-    type: "video",
-    title: "Example Title 12",
-    desc: "Example Desc 12",
-    videoURL: "https://vimeo.com/784547693",
-    id: "12",
-  },
-  {
-    type: "video",
-    title: "Example Title 13",
-    desc: "Example Desc 13",
-    videoURL: "https://vimeo.com/784546836",
-    id: "13",
-  },
-  {
-    type: "video",
-    title: "Example Title 14",
-    desc: "Example Desc 14",
-    videoURL: "https://vimeo.com/784547734",
-    id: "14",
-  },
-];
+// const seedData: Array<ResourceType> = [
+//   {
+//     type: "video",
+//     title: "Get Started with AI",
+//     desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+//     videoURL: "https://vimeo.com/784547775",
+//     id: "0",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 1",
+//     desc: "Example Desc 1",
+//     videoURL: "https://vimeo.com/784547786",
+//     id: "1",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 2",
+//     desc: "Example Desc 2",
+//     videoURL: "https://vimeo.com/784547772",
+//     id: "2",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 3",
+//     desc: "Example Desc 3",
+//     videoURL: "https://vimeo.com/784547687",
+//     id: "3",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 4",
+//     desc: "Example Desc 4",
+//     videoURL: "https://vimeo.com/784546783",
+//     id: "4",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 5",
+//     desc: "Example Desc 5",
+//     videoURL: "https://vimeo.com/784547764",
+//     id: "5",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 6",
+//     desc: "Example Desc 6",
+//     videoURL: "https://vimeo.com/784547736",
+//     id: "6",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 7",
+//     desc: "Example Desc 7",
+//     videoURL: "https://vimeo.com/784547745",
+//     id: "7",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 8",
+//     desc: "Example Desc 8",
+//     videoURL: "https://vimeo.com/784547740",
+//     id: "8",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 9",
+//     desc: "Example Desc 9",
+//     videoURL: "https://vimeo.com/784547711",
+//     id: "9",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 10",
+//     desc: "Example Desc 10",
+//     videoURL: "https://vimeo.com/784547695",
+//     id: "10",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 11",
+//     desc: "Example Desc 11",
+//     videoURL: "https://vimeo.com/784547673",
+//     id: "11",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 12",
+//     desc: "Example Desc 12",
+//     videoURL: "https://vimeo.com/784547693",
+//     id: "12",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 13",
+//     desc: "Example Desc 13",
+//     videoURL: "https://vimeo.com/784546836",
+//     id: "13",
+//   },
+//   {
+//     type: "video",
+//     title: "Example Title 14",
+//     desc: "Example Desc 14",
+//     videoURL: "https://vimeo.com/784547734",
+//     id: "14",
+//   },
+// ];
 
 const LearnContainer = (props: Props) => {
   const { currentContent, setCurrentContent, currentIndex, setCurrentIndex } =
@@ -138,6 +139,8 @@ const LearnContainer = (props: Props) => {
   const [courseData, setCourseData] = useState<courseDataType | null>(null);
   const [packageData, setPackageData] = useState<packageType | null>(null);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
+  const [downloadCertificate, setDownLoadCertificate] =
+    useState<boolean>(false);
   const params = useParams();
   const router = useRouter();
 
@@ -146,7 +149,7 @@ const LearnContainer = (props: Props) => {
 
   const changeToNext = async () => {
     let length = courseData?.sequence?.length || 0;
-    if (currentIdx < length) {
+    if (currentIdx + 1 < length) {
       if (currentIdx == currentIndex) {
         // hit API to update currentIndex;
         await handlePost("/package/update-index", {
@@ -156,7 +159,11 @@ const LearnContainer = (props: Props) => {
       }
       setCurrentContent(courseData?.sequence[currentIdx + 1]);
       setCurrentIdx((prev: number) => ++prev);
-    } else setCurrentContent(null);
+    } else {
+      setCurrentContent(null);
+      setDownLoadCertificate(true);
+      setCurrentIdx((prev: number) => ++prev);
+    }
   };
 
   const prevVideo = () => {
@@ -239,6 +246,12 @@ const LearnContainer = (props: Props) => {
             <DynamicVideoPlayer
               onEndedHandler={changeToNext}
               thumbnail={courseData?.thumbnailUrl}
+            />
+          ) : null}
+          {downloadCertificate ? (
+            <CourseCompletion
+              enableDownloadCertificate={downloadCertificate}
+              packageId={packageData?.recordId}
             />
           ) : null}
           {/* <iframe

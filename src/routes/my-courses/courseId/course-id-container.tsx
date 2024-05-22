@@ -23,7 +23,7 @@ const CourseIdContainer = ({ courseData }: Props) => {
         <CoursePrimaryDetailsContainer courseData={courseData} />
 
         {courseData.sequence && courseData.sequence.length > 0 && (
-          <CourseSequenceContainer sequence={courseData.sequence} />
+          <CourseSequenceContainer sequence={courseData?.sequence} />
         )}
       </div>
 

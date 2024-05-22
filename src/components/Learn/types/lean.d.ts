@@ -2,7 +2,7 @@ interface ResourceType {
   type: String;
   title: String;
   desc: String;
-  videoURL: string;
+  videoID: string;
   id: String;
 }
 
