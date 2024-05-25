@@ -64,9 +64,10 @@ const ContentBar = ({ contentData, playingIdx, updatePlayingIndex }: Props) => {
                 playingIdx == idx ? "bg-[#7e3af22a]" : ""
               }`}
               key={idx}
+              id={`${idx}`}
               onClick={() => {
                 if (idx <= currentIndex) {
-                  updatePlayingIndex(idx);
+                  updatePlayingIndex(idx, content);
                   setCurrentContent(content);
                 }
               }}
