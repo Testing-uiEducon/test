@@ -8,6 +8,7 @@ import { useAppSelector } from "@/core/redux/hooks";
 import { useParams, useRouter } from "next/navigation";
 import { handleGet, handlePost } from "@/core/api-calls/Axios";
 import CourseCompletion from "./CourseCompletion";
+import ModuleCompletion from "./ModuleCompletion";
 
 type Props = {};
 
@@ -23,6 +24,7 @@ interface courseDataType {
   thumbnailUrl: string;
   sequence: Array<ResourceType | null>;
   createdAt: any;
+  totalContent: number;
 }
 
 // const seedData: Array<ResourceType> = [
@@ -141,14 +143,39 @@ const LearnContainer = (props: Props) => {
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [downloadCertificate, setDownLoadCertificate] =
     useState<boolean>(false);
+  const [moduleCompletion, setModuleCompletion] = useState<boolean>(false);
   const params = useParams();
   const router = useRouter();
 
   const purchaseState = useAppSelector((state) => state.packagesState);
   const { userLoading } = useAppSelector((state) => state.authState);
 
+  const scrollToTop = (idx: string) => {
+    const element = document.getElementById(idx);
+    element?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+
+  const setIdx = (idx: number) => {
+    setCurrentIdx(idx);
+    scrollToTop(`${idx}`);
+    if (moduleCompletion) setModuleCompletion(false);
+    if (downloadCertificate) setDownLoadCertificate(false);
+  };
+
+  const restartCourse = () => {
+    setCurrentIdx(0);
+    setCurrentContent(courseData?.sequence[0]);
+    scrollToTop("0");
+    if (moduleCompletion) setModuleCompletion(false);
+  };
+
   const changeToNext = async () => {
     let length = courseData?.sequence?.length || 0;
+    let totalContent = courseData?.totalContent || length;
     if (currentIdx + 1 < length) {
       if (currentIdx == currentIndex) {
         // hit API to update currentIndex;
@@ -159,10 +186,12 @@ const LearnContainer = (props: Props) => {
       }
       setCurrentContent(courseData?.sequence[currentIdx + 1]);
       setCurrentIdx((prev: number) => ++prev);
+      scrollToTop(`${currentIdx}`);
     } else {
       setCurrentContent(null);
-      setDownLoadCertificate(true);
       setCurrentIdx((prev: number) => ++prev);
+      if (length < totalContent) setModuleCompletion(true);
+      else setDownLoadCertificate(true);
     }
   };
 
@@ -223,7 +252,7 @@ const LearnContainer = (props: Props) => {
       <ContentBar
         contentData={courseData?.sequence}
         playingIdx={currentIdx}
-        updatePlayingIndex={setCurrentIdx}
+        updatePlayingIndex={setIdx}
       />
       {/* </section> */}
       <section className="md:w-[70%] relative h-[calc(100%-50px)] md:h-full">
@@ -253,6 +282,9 @@ const LearnContainer = (props: Props) => {
               enableDownloadCertificate={downloadCertificate}
               packageId={packageData?.recordId}
             />
+          ) : null}
+          {moduleCompletion ? (
+            <ModuleCompletion restartCourse={restartCourse} />
           ) : null}
           {/* <iframe
             width="560"
