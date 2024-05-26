@@ -18,7 +18,7 @@ const ModuleCompletion = ({ restartCourse }: Props) => {
           onClick={() => restartCourse()}
           data-tip="Complete the course to download the certificate"
         >
-          Watch lection 1
+          Watch lecture 1
         </button>
       </div>
     </div>

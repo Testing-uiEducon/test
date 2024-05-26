@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
 
 type Props = {
   courseData: any;
@@ -10,11 +9,8 @@ type Props = {
 
 const CourseCard = ({ courseData, isPurchased }: Props) => {
   const router = useRouter();
-  const pathname = usePathname();
 
   const courseClickHandler = (courseData: CourseType) => {
-    // console.log(pathname);
-
     router.push(`courses/${courseData.recordId}`);
   };
 
@@ -28,17 +24,17 @@ const CourseCard = ({ courseData, isPurchased }: Props) => {
           height={144}
           className="md:h-36 rounded-t-[20px] object-cover w-full"
         />
-        <div className="flex flex-col gap-y-2 p-4">
+        <div className="flex flex-col gap-y-2 py-4 px-5">
           <p className="text-lg tracking-wide font-semibold">
             ₹{courseData?.pricingINR}
           </p>
-          <p className="text-lg tracking-wider font-light">
+          <p className="text-lg tracking-wider font-medium">
             {courseData?.name}
           </p>
         </div>
       </div>
       <button
-        className="mt-3 rounded-b-[20px] text-center duration-300 text-lg tracking-wider font-light py-4 border bg-[#7E3AF2] hover:bg-[#7e3af2c7] text-white w-full "
+        className="mt-3 rounded-b-[20px] text-center duration-300 text-lg tracking-wider font-light py-4 border bg-[#7E3AF2] hover:bg-[#7e3af2c7] text-white w-full font-normal"
         onClick={() => {
           if (isPurchased) {
             router.push(`courses/${courseData?.recordId}/learn`);
