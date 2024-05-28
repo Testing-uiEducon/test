@@ -152,7 +152,7 @@ const Footer = ({ router }) => {
                     clipRule="evenodd"
                   />
                 </svg>
-                +91 9160077753
+                +91 8355031313
               </p>
               <p className="flex items-center justify-center md:justify-start">
                 <svg

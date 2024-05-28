@@ -66,7 +66,7 @@ function Contact() {
                         </div>
                         <div className="grow ml-6">
                           <p className="font-bold mb-1">Phone:</p>
-                          <p className="text-gray-500">+91 9160077753</p>
+                          <p className="text-gray-500">+91 8355031313</p>
 
                           {/* <p className="font-bold mb-1">Email:</p><p className="text-gray-500">+91 9160077753</p> */}
                         </div>
