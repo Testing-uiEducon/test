@@ -9,13 +9,6 @@ import React from "react";
 type Props = {};
 
 const learn = (props: Props) => {
-  <Head>
-    <script src="https://static.testpress.in/static/js/player.js"></script>
-    <script>
-      var iframe = document.querySelector('iframe'); var player = new
-      Testpress.Player(iframe); console.log(player);
-    </script>
-  </Head>;
   return (
     <PrivateRouteWrapper>
       <EmailVerifyWrapper>
