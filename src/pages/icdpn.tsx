@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const icdpn = () => {
+const Icdpn = () => {
   const router = useRouter();
   const { destination } = router.query;
 
@@ -13,4 +13,4 @@ const icdpn = () => {
   return <p>Redirecting...</p>;
 };
 
-export default icdpn;
+export default Icdpn;

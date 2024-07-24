@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const icain = () => {
+const Icain = () => {
   const router = useRouter();
   const { destination } = router.query;
 
@@ -28,4 +28,4 @@ const icain = () => {
   return <p>Redirecting...</p>;
 };
 
-export default icain;
+export default Icain;
